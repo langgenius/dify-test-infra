@@ -1,0 +1,24 @@
+{
+  "bootstrap": true,
+  "metric": "summed testcase setup/call/teardown seconds",
+  "note": "Validated PR #42593 runs; bootstrap pending merge. Scheduled updates accept merged PRs only.",
+  "platform": "Linux",
+  "python": "3.12",
+  "samples": [
+    {
+      "pull_request": 42593,
+      "run_id": 35508871268
+    },
+    {
+      "pull_request": 42593,
+      "run_id": 35509177510
+    },
+    {
+      "pull_request": 42593,
+      "run_id": 35509584297
+    }
+  ],
+  "schema": 1,
+  "source_repository": "langgenius/dify",
+  "updated_at": "2026-09-20T12:22:18.914059+00:00"
+}
