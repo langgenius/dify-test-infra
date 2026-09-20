@@ -1,0 +1,62 @@
+name: Update test times
+
+on:
+  schedule:
+    - cron: '5 3 * * *'
+  workflow_dispatch:
+    inputs:
+      verify-run:
+        description: 'Optional Dify run ID: verify artifact access without publishing'
+        type: string
+        default: ''
+  pull_request:
+    paths:
+      - 'update_test_times.py'
+      - 'tests/**'
+      - '.github/workflows/update-test-times.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-times-${{ github.event_name == 'pull_request' && github.ref || 'publisher' }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python3 -m unittest discover -s tests -v
+
+  publish:
+    needs: test
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Collect successful observations
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERIFY_RUN: ${{ inputs.verify-run }}
+        run: |
+          args=()
+          if [[ -n "$VERIFY_RUN" ]]; then args+=(--verify-run "$VERIFY_RUN"); fi
+          python3 update_test_times.py "${args[@]}"
+      - name: Publish generated statistics
+        run: |
+          if [[ ! -f output/test-times.json ]]; then exit 0; fi
+          git fetch --depth=1 origin generated-stats
+          git worktree add --detach "$RUNNER_TEMP/generated-stats" FETCH_HEAD
+          mkdir -p "$RUNNER_TEMP/generated-stats/stats"
+          if cmp -s output/test-times.json "$RUNNER_TEMP/generated-stats/stats/test-times.json"; then exit 0; fi
+          cp output/*.json "$RUNNER_TEMP/generated-stats/stats/"
+          git -C "$RUNNER_TEMP/generated-stats" config user.name 'github-actions[bot]'
+          git -C "$RUNNER_TEMP/generated-stats" config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C "$RUNNER_TEMP/generated-stats" add stats
+          git -C "$RUNNER_TEMP/generated-stats" commit -m 'ci: update Dify test timing statistics'
+          git -C "$RUNNER_TEMP/generated-stats" push origin HEAD:generated-stats
