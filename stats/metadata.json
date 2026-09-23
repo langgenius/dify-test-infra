@@ -5,37 +5,37 @@
   "python": "3.12",
   "samples": [
     {
-      "head_sha": "877be8c687cdbbaf34a1a0c27f7d6460adc52ce1",
-      "merged_at": "2026-09-22T02:51:05Z",
-      "pull_request": 42625,
-      "run_id": 35679961484
+      "head_sha": "cbcd81e60865e49fea8115ee9b302b2f94442a40",
+      "merged_at": "2026-09-23T02:39:25Z",
+      "pull_request": 41872,
+      "run_id": 35809773458
     },
     {
-      "head_sha": "4e83ddf11425031415a486949fd2d8afb72c6a89",
-      "merged_at": "2026-09-22T02:02:18Z",
-      "pull_request": 42130,
-      "run_id": 35676460465
+      "head_sha": "f24a505559152bb56ebe55a55a994c7befb4de4e",
+      "merged_at": "2026-09-23T02:11:09Z",
+      "pull_request": 41857,
+      "run_id": 35808214044
     },
     {
-      "head_sha": "bbad3519139e3445e6f115ecdb7b452956171221",
-      "merged_at": "2026-09-21T10:03:48Z",
-      "pull_request": 42523,
-      "run_id": 35584889195
+      "head_sha": "44e8eb5aac2c5136677fdd0cd127c710cc51af80",
+      "merged_at": "2026-09-22T21:35:59Z",
+      "pull_request": 42599,
+      "run_id": 35776156074
     },
     {
-      "head_sha": "5d25a0da0a1d733be4b4a9e82766512970f3256a",
-      "merged_at": "2026-09-21T09:56:46Z",
-      "pull_request": 42652,
-      "run_id": 35581111347
+      "head_sha": "0533ba484d253429d438f3cdb1525483e8c8a58d",
+      "merged_at": "2026-09-22T15:29:23Z",
+      "pull_request": 42753,
+      "run_id": 35745516018
     },
     {
-      "head_sha": "2fb0a348f683c501132172f777c82dfca44056dc",
-      "merged_at": "2026-09-21T07:17:38Z",
-      "pull_request": 42554,
-      "run_id": 35559091754
+      "head_sha": "c197bc058b1b33b17f23ebb3823ebdf5db6f19a9",
+      "merged_at": "2026-09-22T15:17:46Z",
+      "pull_request": 42602,
+      "run_id": 35518826087
     }
   ],
   "schema": 1,
   "source_repository": "langgenius/dify",
-  "updated_at": "2026-09-22T03:24:53.321254+00:00"
+  "updated_at": "2026-09-23T03:25:04.718982+00:00"
 }
