@@ -5,37 +5,37 @@
   "python": "3.12",
   "samples": [
     {
-      "head_sha": "128f807e6477ee649cd46e98fa820555666197c5",
-      "merged_at": "2026-09-24T03:02:54Z",
-      "pull_request": 42056,
-      "run_id": 35948425490
+      "head_sha": "3c2805a3058f6227418ee62bc4f639d3b4386912",
+      "merged_at": "2026-09-25T02:43:27Z",
+      "pull_request": 42903,
+      "run_id": 35971153338
     },
     {
-      "head_sha": "307d1625146b060d1165b318b0445bb8a8dd6df6",
-      "merged_at": "2026-09-24T02:52:02Z",
-      "pull_request": 42761,
-      "run_id": 35749857878
+      "head_sha": "7ac5d3c30e6929246f2c7792c3222aa0d59ea2fc",
+      "merged_at": "2026-09-25T02:39:33Z",
+      "pull_request": 42913,
+      "run_id": 35979199483
     },
     {
-      "head_sha": "5c97f8f91438f15d903887e687bacbda2400dd2c",
-      "merged_at": "2026-09-24T01:15:18Z",
-      "pull_request": 42016,
-      "run_id": 35859826373
+      "head_sha": "072d510eb4a047c4c8d556fb700853a48f13b9aa",
+      "merged_at": "2026-09-25T02:15:30Z",
+      "pull_request": 42932,
+      "run_id": 36078940323
     },
     {
-      "head_sha": "18cc06a7a9f03c0a43939496f5f7331fda8e3cc0",
-      "merged_at": "2026-09-23T19:56:06Z",
-      "pull_request": 42834,
-      "run_id": 35848370095
+      "head_sha": "13e1c05224e0d9ed4b76917a753c71697b2936b1",
+      "merged_at": "2026-09-24T09:02:38Z",
+      "pull_request": 42876,
+      "run_id": 35976175963
     },
     {
-      "head_sha": "cc07961487f5a19aaff19958f9197dfb981b7ae3",
-      "merged_at": "2026-09-23T14:13:22Z",
-      "pull_request": 42849,
-      "run_id": 35870932362
+      "head_sha": "3ed1e508b25489862df205574347f6d1f6824daa",
+      "merged_at": "2026-09-24T08:48:54Z",
+      "pull_request": 42907,
+      "run_id": 35975943195
     }
   ],
   "schema": 1,
   "source_repository": "langgenius/dify",
-  "updated_at": "2026-09-24T03:24:18.532507+00:00"
+  "updated_at": "2026-09-25T03:23:46.477582+00:00"
 }
