@@ -5,6 +5,18 @@
   "python": "3.12",
   "samples": [
     {
+      "head_sha": "a571437d232ef6b6a301cf132c285ec48302cc79",
+      "merged_at": "2026-09-25T08:23:14Z",
+      "pull_request": 42750,
+      "run_id": 36089229286
+    },
+    {
+      "head_sha": "79a396f131dcb8b3678b1642869e34b35445dec2",
+      "merged_at": "2026-09-25T08:13:51Z",
+      "pull_request": 42922,
+      "run_id": 35996015717
+    },
+    {
       "head_sha": "3c2805a3058f6227418ee62bc4f639d3b4386912",
       "merged_at": "2026-09-25T02:43:27Z",
       "pull_request": 42903,
@@ -21,21 +33,9 @@
       "merged_at": "2026-09-25T02:15:30Z",
       "pull_request": 42932,
       "run_id": 36078940323
-    },
-    {
-      "head_sha": "13e1c05224e0d9ed4b76917a753c71697b2936b1",
-      "merged_at": "2026-09-24T09:02:38Z",
-      "pull_request": 42876,
-      "run_id": 35976175963
-    },
-    {
-      "head_sha": "3ed1e508b25489862df205574347f6d1f6824daa",
-      "merged_at": "2026-09-24T08:48:54Z",
-      "pull_request": 42907,
-      "run_id": 35975943195
     }
   ],
   "schema": 1,
   "source_repository": "langgenius/dify",
-  "updated_at": "2026-09-25T03:23:46.477582+00:00"
+  "updated_at": "2026-09-26T03:23:17.099902+00:00"
 }
