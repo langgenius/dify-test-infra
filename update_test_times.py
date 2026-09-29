@@ -61,24 +61,41 @@ def run_observation(run_id):
     return combined
 
 
+def pr_sample(pr):
+    """Prefer tested merged code, falling back to the PR head for other merge modes."""
+    sources = (("merge_group", pr["merge_commit_sha"]), ("pull_request", pr["head"]["sha"]))
+    for event, sha in sources:
+        if not sha:
+            continue
+        query = urlencode({"head_sha": sha, "status": "success", "event": event, "per_page": 10})
+        runs = api(f"actions/workflows/main-ci.yml/runs?{query}")["workflow_runs"]
+        for run in sorted(runs, key=lambda run: run["run_started_at"], reverse=True):
+            observation = run_observation(run["id"])
+            if observation is not None:
+                return ({
+                    "pull_request": pr["number"], "merged_at": pr["merged_at"],
+                    "run_id": run["id"], "head_sha": run["head_sha"],
+                    "event": event, "run_started_at": run["run_started_at"],
+                }, observation)
+    return None
+
+
 def recent_samples(limit=5):
     prs = api("pulls?state=closed&base=main&sort=updated&direction=desc&per_page=100")
     merged = sorted((pr for pr in prs if pr["merged_at"]), key=lambda pr: pr["merged_at"], reverse=True)
     samples = []
+    seen_runs = set()
     for pr in merged:
-        query = urlencode({"head_sha": pr["head"]["sha"], "status": "success", "event": "pull_request", "per_page": 10})
-        runs = api(f"actions/workflows/main-ci.yml/runs?{query}")["workflow_runs"]
-        for run in runs:
-            observation = run_observation(run["id"])
-            if observation is not None:
-                samples.append(({
-                    "pull_request": pr["number"], "merged_at": pr["merged_at"],
-                    "run_id": run["id"], "head_sha": run["head_sha"],
-                }, observation))
-                break
+        sample = pr_sample(pr)
+        if sample is None or sample[0]["run_id"] in seen_runs:
+            continue
+        seen_runs.add(sample[0]["run_id"])
+        samples.append(sample)
         if len(samples) == limit:
             break
-    return samples
+    # A recently merged PR may have run CI days ago. File discovery must follow
+    # the newest observed checkout, not the order in which PRs happened to merge.
+    return sorted(samples, key=lambda sample: sample[0]["run_started_at"], reverse=True)
 
 
 def average_samples(samples):

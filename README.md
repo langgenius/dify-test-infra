@@ -8,14 +8,21 @@ to summed setup/call/teardown seconds on Linux / Python 3.12. Dify downloads thi
 file anonymously and freezes one assignment plan for all CI shards. A missing or
 unavailable baseline falls back to round-robin file allocation.
 
-The workflow runs every three hours (at minute 05 UTC) and reads the latest 100
+The workflow runs every hour (at minute 05 UTC) and reads the latest 100
 updated, closed PRs targeting Dify main, keeps merged PRs, and selects up to five
-with successful Main CI runs and both unexpired timing artifacts. It averages
-observations per file, retaining
-the newest sample's file set. Only merged PRs contribute automatically. Neither
-source code nor artifact contents are executed. `metadata.json` records the exact
-source PRs and runs. When no observations are available, the existing baseline is
-preserved. Artifacts currently expire after seven days.
+distinct successful Main CI runs with both unexpired timing artifacts. For each
+PR, it prefers a merge-group run whose SHA exactly matches the merged commit,
+falling back to the PR head when no complete merge-group observation is available.
+This includes the final measurements taken against the merge queue's base without
+trusting observations from unmerged queue entries. A run is sampled only once,
+even when it is associated with multiple merged PRs.
+
+Samples are ordered by CI start time, not PR merge time. The updater averages
+observations per file, retaining the newest observed checkout's file set. Only
+merged PRs contribute automatically. Neither source code nor artifact contents
+are executed. `metadata.json` records the exact source PRs, events, run times, and
+runs. When no observations are available, the existing baseline is preserved.
+Artifacts currently expire after seven days.
 
 The initial baseline is explicitly marked as a bootstrap from validated PR #42593
 CI, pending that PR's merge. It will be replaced by merged-PR observations once

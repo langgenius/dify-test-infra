@@ -52,18 +52,66 @@ class TimingTests(unittest.TestCase):
 
     def test_only_merged_prs_with_complete_runs_are_sampled(self):
         prs = [{'number': 1, 'merged_at': None, 'head': {'sha': 'unmerged'}},
-               {'number': 2, 'merged_at': '2026-09-20', 'head': {'sha': 'merged'}}]
+               {'number': 2, 'merged_at': '2026-09-20', 'merge_commit_sha': 'merge', 'head': {'sha': 'merged'}}]
         def fake_api(path):
             if path.startswith('pulls?'):
                 return prs
+            if 'event=merge_group' in path:
+                self.assertIn('head_sha=merge&', path)
+                return {'workflow_runs': []}
             self.assertIn('head_sha=merged', path)
             self.assertIn('status=success', path)
-            return {'workflow_runs': [{'id': 10, 'head_sha': 'merged'}, {'id': 9, 'head_sha': 'merged'}]}
+            return {'workflow_runs': [
+                {'id': 10, 'head_sha': 'merged', 'run_started_at': '2026-09-20T01:00:00Z'},
+                {'id': 9, 'head_sha': 'merged', 'run_started_at': '2026-09-20T00:00:00Z'},
+            ]}
         with patch.object(stats, 'api', side_effect=fake_api), patch.object(stats, 'run_observation', side_effect=[None, {'api/test.py': 3}]):
             samples = stats.recent_samples()
         self.assertEqual(len(samples), 1)
         self.assertEqual(samples[0][0]['pull_request'], 2)
         self.assertEqual(samples[0][0]['run_id'], 9)
+        self.assertEqual(samples[0][0]['event'], 'pull_request')
+
+    def test_merge_group_matching_merged_commit_is_preferred(self):
+        pr = {'number': 1, 'merged_at': '2026-09-20', 'merge_commit_sha': 'merge', 'head': {'sha': 'head'}}
+        runs = [
+            {'id': 1, 'head_sha': 'merge', 'run_started_at': '2026-09-19T00:00:00Z'},
+            {'id': 2, 'head_sha': 'merge', 'run_started_at': '2026-09-20T00:00:00Z'},
+        ]
+        with patch.object(stats, 'api', return_value={'workflow_runs': runs}) as request, patch.object(
+            stats, 'run_observation', return_value={'api/test.py': 2}
+        ) as observation:
+            sample = stats.pr_sample(pr)
+        request.assert_called_once()
+        self.assertIn('head_sha=merge&status=success&event=merge_group', request.call_args.args[0])
+        observation.assert_called_once_with(2)
+        self.assertEqual(sample[0]['event'], 'merge_group')
+        self.assertEqual(sample[0]['run_started_at'], '2026-09-20T00:00:00Z')
+
+    def test_incomplete_merge_group_falls_back_to_pr_head(self):
+        pr = {'number': 1, 'merged_at': '2026-09-20', 'merge_commit_sha': 'merge', 'head': {'sha': 'head'}}
+        with patch.object(stats, 'api', side_effect=[
+            {'workflow_runs': [{'id': 2, 'head_sha': 'merge', 'run_started_at': '2026-09-20T00:00:00Z'}]},
+            {'workflow_runs': [{'id': 1, 'head_sha': 'head', 'run_started_at': '2026-09-19T00:00:00Z'}]},
+        ]), patch.object(stats, 'run_observation', side_effect=[None, {'api/test.py': 3}]):
+            sample = stats.pr_sample(pr)
+        self.assertEqual(sample[0]['run_id'], 1)
+        self.assertEqual(sample[0]['event'], 'pull_request')
+
+    def test_run_time_controls_latest_file_set_and_duplicate_runs_are_not_counted(self):
+        prs = [
+            {'number': 1, 'merged_at': '2026-09-22'},
+            {'number': 2, 'merged_at': '2026-09-21'},
+            {'number': 3, 'merged_at': '2026-09-20'},
+        ]
+        older = ({'run_id': 1, 'run_started_at': '2026-09-18T00:00:00Z'}, {'a': 10, 'deleted': 99})
+        newer = ({'run_id': 2, 'run_started_at': '2026-09-19T00:00:00Z'}, {'a': 20, 'new': 2})
+        with patch.object(stats, 'api', return_value=prs), patch.object(
+            stats, 'pr_sample', side_effect=[older, older, newer]
+        ):
+            samples = stats.recent_samples(limit=2)
+        self.assertEqual([meta['run_id'] for meta, _ in samples], [2, 1])
+        self.assertEqual(stats.average_samples(samples), {'a': 15, 'new': 2})
 
 
 if __name__ == '__main__':
