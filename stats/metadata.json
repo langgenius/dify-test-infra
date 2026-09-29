@@ -5,6 +5,12 @@
   "python": "3.12",
   "samples": [
     {
+      "head_sha": "39a086cf265512858739f91309198ec043ef6f34",
+      "merged_at": "2026-09-29T03:35:03Z",
+      "pull_request": 43120,
+      "run_id": 36515981629
+    },
+    {
       "head_sha": "d4dfc127f232b8e79fb37b6ece55a1be5da5549b",
       "merged_at": "2026-09-29T03:11:45Z",
       "pull_request": 43114,
@@ -27,15 +33,9 @@
       "merged_at": "2026-09-29T02:08:10Z",
       "pull_request": 43056,
       "run_id": 36394335868
-    },
-    {
-      "head_sha": "b4756172094c5409f8d56ef135b4962213580831",
-      "merged_at": "2026-09-29T02:06:25Z",
-      "pull_request": 43061,
-      "run_id": 36400795353
     }
   ],
   "schema": 1,
   "source_repository": "langgenius/dify",
-  "updated_at": "2026-09-29T03:26:12.192950+00:00"
+  "updated_at": "2026-09-29T06:39:19.437637+00:00"
 }
