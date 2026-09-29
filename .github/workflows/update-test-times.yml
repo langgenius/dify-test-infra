@@ -2,7 +2,7 @@ name: Update test times
 
 on:
   schedule:
-    - cron: '5 3 * * *'
+    - cron: '5 */3 * * *'
   workflow_dispatch:
     inputs:
       verify-run:

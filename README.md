@@ -8,9 +8,10 @@ to summed setup/call/teardown seconds on Linux / Python 3.12. Dify downloads thi
 file anonymously and freezes one assignment plan for all CI shards. A missing or
 unavailable baseline falls back to round-robin file allocation.
 
-The daily workflow (03:05 UTC) reads the latest 100 updated, closed PRs targeting
-Dify main, keeps merged PRs, and selects up to five with successful Main CI runs
-and both unexpired timing artifacts. It averages observations per file, retaining
+The workflow runs every three hours (at minute 05 UTC) and reads the latest 100
+updated, closed PRs targeting Dify main, keeps merged PRs, and selects up to five
+with successful Main CI runs and both unexpired timing artifacts. It averages
+observations per file, retaining
 the newest sample's file set. Only merged PRs contribute automatically. Neither
 source code nor artifact contents are executed. `metadata.json` records the exact
 source PRs and runs. When no observations are available, the existing baseline is
