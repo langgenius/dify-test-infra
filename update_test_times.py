@@ -8,6 +8,7 @@ import argparse
 import io
 import json
 import math
+import re
 import subprocess
 import zipfile
 from datetime import datetime, timezone
@@ -42,19 +43,40 @@ def read_observation(archive, shard):
     return data
 
 
-def run_observation(run_id):
-    artifacts = api(f"actions/runs/{run_id}/artifacts?per_page=100")["artifacts"]
+def complete_timing_artifacts(artifacts):
+    """Require the declared shard set, while accepting legacy two-shard runs."""
     selected = {}
     for artifact in artifacts:
-        if not artifact["expired"]:
-            name = artifact["name"]
+        name = artifact["name"]
+        if name.startswith("api-unit-durations-"):
             if name not in selected or artifact["id"] > selected[name]["id"]:
                 selected[name] = artifact
-    if any(f"api-unit-durations-{shard}" not in selected for shard in (1, 2)):
+    layouts = set()
+    shards = {}
+    for name, artifact in selected.items():
+        match = re.fullmatch(r"api-unit-durations-([1-9][0-9]*)(?:-of-([1-9][0-9]*))?", name)
+        if match is None or artifact["expired"]:
+            return None
+        index, declared_total = match.groups()
+        total = int(declared_total) if declared_total else 2
+        layouts.add((declared_total is not None, total))
+        shards[int(index)] = artifact
+    # Mixed layouts/counts cannot be a complete observation from one workflow.
+    if len(layouts) != 1:
+        return None
+    _, total = layouts.pop()
+    if len(shards) != total or sorted(shards) != list(range(1, total + 1)):
+        return None
+    return sorted(shards.items())
+
+
+def run_observation(run_id):
+    artifacts = api(f"actions/runs/{run_id}/artifacts?per_page=100")["artifacts"]
+    complete = complete_timing_artifacts(artifacts)
+    if complete is None:
         return None
     combined = {}
-    for shard in (1, 2):
-        artifact = selected[f"api-unit-durations-{shard}"]
+    for shard, artifact in complete:
         archive = subprocess.check_output(["gh", "api", f"repos/{SOURCE}/actions/artifacts/{artifact['id']}/zip"])
         for name, seconds in read_observation(archive, shard).items():
             combined[name] = combined.get(name, 0.0) + seconds

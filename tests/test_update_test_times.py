@@ -50,6 +50,74 @@ class TimingTests(unittest.TestCase):
             self.assertEqual(stats.run_observation(123), {'api/test.py': 5})
             self.assertIn('/artifacts/2/zip', download.call_args_list[0].args[0][-1])
 
+    def test_declared_three_shards_include_controller_observations(self):
+        artifacts = [
+            {'id': shard, 'name': f'api-unit-durations-{shard}-of-3', 'expired': False}
+            for shard in (1, 2, 3)
+        ]
+        observations = [
+            archive({'api/test.py': 2}),
+            archive({'api/test.py': 3}, 'durations-2.json'),
+            archive({'api/tests/unit_tests/controllers/test_route.py': 7}, 'durations-3.json'),
+        ]
+        with patch.object(stats, 'api', return_value={'artifacts': artifacts}), patch.object(
+            stats.subprocess, 'check_output', side_effect=observations
+        ) as download:
+            self.assertEqual(stats.run_observation(123), {
+                'api/test.py': 5, 'api/tests/unit_tests/controllers/test_route.py': 7,
+            })
+            self.assertEqual(download.call_count, 3)
+
+    def test_missing_or_expired_declared_final_shard_rejects_the_whole_run(self):
+        first_two = [
+            {'id': shard, 'name': f'api-unit-durations-{shard}-of-3', 'expired': False}
+            for shard in (1, 2)
+        ]
+        expired_third = {'id': 3, 'name': 'api-unit-durations-3-of-3', 'expired': True}
+        for artifacts in (first_two, first_two + [expired_third]):
+            with self.subTest(artifacts=artifacts), patch.object(
+                stats, 'api', return_value={'artifacts': artifacts}
+            ), patch.object(stats.subprocess, 'check_output') as download:
+                self.assertIsNone(stats.run_observation(123))
+                download.assert_not_called()
+
+    def test_inconsistent_or_invalid_layouts_are_not_accepted(self):
+        names = [
+            ['1-of-2', '2-of-3', '3-of-3'],
+            ['1', '2', '3'],
+            ['1', '2', '3-of-3'],
+            ['1-of-2', '3-of-2'],
+            ['0-of-2', '1-of-2'],
+            ['1-of-0'],
+            ['01-of-1'],
+            ['1-of-999999999999'],
+            ['1-of-1', 'broken'],
+        ]
+        for suffixes in names:
+            artifacts = [
+                {'id': i, 'name': f'api-unit-durations-{suffix}', 'expired': False}
+                for i, suffix in enumerate(suffixes)
+            ]
+            with self.subTest(suffixes=suffixes):
+                self.assertIsNone(stats.complete_timing_artifacts(artifacts))
+
+    def test_complete_declared_counts_are_supported(self):
+        for total in (1, 3, 4):
+            artifacts = [
+                {'id': i, 'name': f'api-unit-durations-{i}-of-{total}', 'expired': False}
+                for i in range(1, total + 1)
+            ]
+            artifacts.append({'id': 99, 'name': 'api-unit-plan', 'expired': False})
+            with self.subTest(total=total):
+                selected = stats.complete_timing_artifacts(list(reversed(artifacts)))
+                self.assertEqual([i for i, _ in selected], list(range(1, total + 1)))
+
+    def test_newest_artifact_is_required_even_when_expired(self):
+        old = {'id': 1, 'name': 'api-unit-durations-1-of-1', 'expired': False}
+        newest = {**old, 'id': 2}
+        self.assertEqual(stats.complete_timing_artifacts([newest, old]), [(1, newest)])
+        self.assertIsNone(stats.complete_timing_artifacts([old, {**newest, 'expired': True}]))
+
     def test_only_merged_prs_with_complete_runs_are_sampled(self):
         prs = [{'number': 1, 'merged_at': None, 'head': {'sha': 'unmerged'}},
                {'number': 2, 'merged_at': '2026-09-20', 'merge_commit_sha': 'merge', 'head': {'sha': 'merged'}}]
