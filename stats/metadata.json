@@ -6,6 +6,30 @@
   "samples": [
     {
       "event": "merge_group",
+      "head_sha": "73c97303a6c3876432a0a6e83e59026ba39c6a63",
+      "merged_at": "2026-10-15T07:23:19Z",
+      "pull_request": 43610,
+      "run_id": 38697829066,
+      "run_started_at": "2026-10-15T07:18:08Z"
+    },
+    {
+      "event": "merge_group",
+      "head_sha": "199bd76e5fd25c32c506285dd7753c24150da1b5",
+      "merged_at": "2026-10-15T07:18:05Z",
+      "pull_request": 43607,
+      "run_id": 38697192988,
+      "run_started_at": "2026-10-15T07:12:25Z"
+    },
+    {
+      "event": "merge_group",
+      "head_sha": "26e2ab90fcc649c49f1e19bf14947204a8c1ac9a",
+      "merged_at": "2026-10-15T06:53:23Z",
+      "pull_request": 44152,
+      "run_id": 38694646760,
+      "run_started_at": "2026-10-15T06:48:29Z"
+    },
+    {
+      "event": "merge_group",
       "head_sha": "36f9bb69e6c2ff629586d93ab463bd4da3d89af6",
       "merged_at": "2026-10-15T05:36:01Z",
       "pull_request": 43842,
@@ -19,33 +43,9 @@
       "pull_request": 44131,
       "run_id": 38684790178,
       "run_started_at": "2026-10-15T05:04:13Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "9e771c03d333a1f649043fa744366c67c7377f4f",
-      "merged_at": "2026-10-15T05:07:52Z",
-      "pull_request": 44132,
-      "run_id": 38684688707,
-      "run_started_at": "2026-10-15T05:03:03Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "14f863a23f117723b28a96de63dab4afbe69a868",
-      "merged_at": "2026-10-15T05:07:52Z",
-      "pull_request": 44109,
-      "run_id": 38684662028,
-      "run_started_at": "2026-10-15T05:02:45Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "7b467ec651dcc0fac5040246a36ff2410e6e4dc1",
-      "merged_at": "2026-10-15T05:05:01Z",
-      "pull_request": 44110,
-      "run_id": 38684455623,
-      "run_started_at": "2026-10-15T05:00:31Z"
     }
   ],
   "schema": 1,
   "source_repository": "langgenius/dify",
-  "updated_at": "2026-10-15T06:34:39.463385+00:00"
+  "updated_at": "2026-10-15T07:24:59.626607+00:00"
 }
