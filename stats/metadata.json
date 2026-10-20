@@ -6,46 +6,46 @@
   "samples": [
     {
       "event": "merge_group",
+      "head_sha": "2a6764edc52126de1f44d0c4b328de3664735de7",
+      "merged_at": "2026-10-20T05:58:26Z",
+      "pull_request": 41025,
+      "run_id": 39377230577,
+      "run_started_at": "2026-10-20T05:52:34Z"
+    },
+    {
+      "event": "merge_group",
+      "head_sha": "488822e669752c846422f45ff9ad60d0c2bd1881",
+      "merged_at": "2026-10-20T05:54:18Z",
+      "pull_request": 44389,
+      "run_id": 39376915475,
+      "run_started_at": "2026-10-20T05:49:02Z"
+    },
+    {
+      "event": "merge_group",
+      "head_sha": "7baaf3f9179f3a4aa329df48b06ac806c0012a74",
+      "merged_at": "2026-10-20T05:52:31Z",
+      "pull_request": 44388,
+      "run_id": 39376761145,
+      "run_started_at": "2026-10-20T05:47:16Z"
+    },
+    {
+      "event": "merge_group",
+      "head_sha": "5b3b7cd9f4597f3aa99e5fe6b8215670d008cf80",
+      "merged_at": "2026-10-20T05:27:13Z",
+      "pull_request": 44387,
+      "run_id": 39374499098,
+      "run_started_at": "2026-10-20T05:21:58Z"
+    },
+    {
+      "event": "merge_group",
       "head_sha": "8e26f026af91d09b75373633b1db9fb96ab66fc2",
       "merged_at": "2026-10-20T04:30:01Z",
       "pull_request": 44352,
       "run_id": 39369447522,
       "run_started_at": "2026-10-20T04:24:57Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "38a5efe36f7aa9248245910bcfbe2c18665a164a",
-      "merged_at": "2026-10-20T04:09:42Z",
-      "pull_request": 44380,
-      "run_id": 39367578892,
-      "run_started_at": "2026-10-20T04:04:01Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "a491dabb32d6f01a4b2575d52517be801a4f147a",
-      "merged_at": "2026-10-20T04:09:42Z",
-      "pull_request": 44379,
-      "run_id": 39367530771,
-      "run_started_at": "2026-10-20T04:03:28Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "823f40e71fc9e045a9ff2aa903a74b5b001dff33",
-      "merged_at": "2026-10-19T13:10:03Z",
-      "pull_request": 40277,
-      "run_id": 39257008463,
-      "run_started_at": "2026-10-19T13:04:03Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "49827cba95e6eb7563254b51e19469bb660e1a3f",
-      "merged_at": "2026-10-19T13:05:10Z",
-      "pull_request": 44347,
-      "run_id": 39256227387,
-      "run_started_at": "2026-10-19T12:58:17Z"
     }
   ],
   "schema": 1,
   "source_repository": "langgenius/dify",
-  "updated_at": "2026-10-20T05:20:23.338334+00:00"
+  "updated_at": "2026-10-20T06:33:43.092277+00:00"
 }
