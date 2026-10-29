@@ -6,6 +6,30 @@
   "samples": [
     {
       "event": "merge_group",
+      "head_sha": "9e978defdec8c86e41023ed8428f07662f59b26b",
+      "merged_at": "2026-10-29T04:49:39Z",
+      "pull_request": 44947,
+      "run_id": 40819281202,
+      "run_started_at": "2026-10-29T04:42:51Z"
+    },
+    {
+      "event": "merge_group",
+      "head_sha": "78e7fce2ae8cac6a36dacc9f7b9509afe8d877bc",
+      "merged_at": "2026-10-29T04:40:08Z",
+      "pull_request": 45029,
+      "run_id": 40818347549,
+      "run_started_at": "2026-10-29T04:32:47Z"
+    },
+    {
+      "event": "merge_group",
+      "head_sha": "876ba3a93ff850cd7b59f67a2f400ba3573eeffe",
+      "merged_at": "2026-10-29T04:27:42Z",
+      "pull_request": 44816,
+      "run_id": 40817236805,
+      "run_started_at": "2026-10-29T04:20:54Z"
+    },
+    {
+      "event": "merge_group",
       "head_sha": "70975c1873aeab9e80ffcf5b2fec3796eda77059",
       "merged_at": "2026-10-29T03:57:36Z",
       "pull_request": 45023,
@@ -19,33 +43,9 @@
       "pull_request": 44879,
       "run_id": 40812358924,
       "run_started_at": "2026-10-29T03:28:49Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "1fc2ed94b6874df79f8fbfd71d7582917b89b88b",
-      "merged_at": "2026-10-29T03:27:40Z",
-      "pull_request": 44889,
-      "run_id": 40811546511,
-      "run_started_at": "2026-10-29T03:20:05Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "668c73ca53b2b3fbe1b12cca9595e386de834ebf",
-      "merged_at": "2026-10-29T03:13:40Z",
-      "pull_request": 44916,
-      "run_id": 40810210249,
-      "run_started_at": "2026-10-29T03:06:08Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "5f9f0ce5221a3b33b208ba820ad8f33283261bf6",
-      "merged_at": "2026-10-29T02:52:02Z",
-      "pull_request": 44992,
-      "run_id": 40808099989,
-      "run_started_at": "2026-10-29T02:44:03Z"
     }
   ],
   "schema": 1,
   "source_repository": "langgenius/dify",
-  "updated_at": "2026-10-29T04:18:00.167647+00:00"
+  "updated_at": "2026-10-29T05:15:46.298482+00:00"
 }
