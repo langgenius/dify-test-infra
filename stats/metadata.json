@@ -5,6 +5,14 @@
   "python": "3.12",
   "samples": [
     {
+      "event": "pull_request",
+      "head_sha": "89fe0b46e81be213831b3637d2bac915ab355c01",
+      "merged_at": "2026-11-02T11:29:02Z",
+      "pull_request": 45312,
+      "run_id": 41426728646,
+      "run_started_at": "2026-11-02T10:11:09Z"
+    },
+    {
       "event": "merge_group",
       "head_sha": "24da932967e9dfac79c65db8c85632b4aaea5204",
       "merged_at": "2026-11-02T10:13:12Z",
@@ -35,17 +43,9 @@
       "pull_request": 45307,
       "run_id": 41418312934,
       "run_started_at": "2026-11-02T09:09:05Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "8c5e2efb996617da715677cd6d621b5ba15c250e",
-      "merged_at": "2026-11-02T09:06:23Z",
-      "pull_request": 45099,
-      "run_id": 41416535877,
-      "run_started_at": "2026-11-02T08:55:04Z"
     }
   ],
   "schema": 1,
   "source_repository": "langgenius/dify",
-  "updated_at": "2026-11-02T10:14:44.551952+00:00"
+  "updated_at": "2026-11-02T12:20:08.554297+00:00"
 }
