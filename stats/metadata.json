@@ -37,15 +37,15 @@
       "run_started_at": "2026-11-02T02:38:58Z"
     },
     {
-      "event": "merge_group",
-      "head_sha": "9dd087b8852f7043968991c9b75e73e4771249ac",
-      "merged_at": "2026-11-01T07:59:12Z",
-      "pull_request": 45233,
-      "run_id": 41286262310,
-      "run_started_at": "2026-11-01T07:48:41Z"
+      "event": "pull_request",
+      "head_sha": "edeef2126bed48ec761101c4908e20b04ebb622c",
+      "merged_at": "2026-11-02T04:16:50Z",
+      "pull_request": 44673,
+      "run_id": 41214300618,
+      "run_started_at": "2026-10-31T15:19:27Z"
     }
   ],
   "schema": 1,
   "source_repository": "langgenius/dify",
-  "updated_at": "2026-11-02T04:16:37.201736+00:00"
+  "updated_at": "2026-11-02T05:14:32.754217+00:00"
 }
