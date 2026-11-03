@@ -6,6 +6,30 @@
   "samples": [
     {
       "event": "merge_group",
+      "head_sha": "52ae152e008bf851faad46cfa7dda25677608212",
+      "merged_at": "2026-11-03T10:08:42Z",
+      "pull_request": 45445,
+      "run_id": 41615833594,
+      "run_started_at": "2026-11-03T10:01:55Z"
+    },
+    {
+      "event": "merge_group",
+      "head_sha": "28dabd92ac6335872cb39c3a57536bb2cacbff65",
+      "merged_at": "2026-11-03T09:56:05Z",
+      "pull_request": 45427,
+      "run_id": 41614170932,
+      "run_started_at": "2026-11-03T09:49:40Z"
+    },
+    {
+      "event": "merge_group",
+      "head_sha": "cf38e6ad67b185ea1536c1bd59725235e0d05143",
+      "merged_at": "2026-11-03T09:46:34Z",
+      "pull_request": 45446,
+      "run_id": 41613026294,
+      "run_started_at": "2026-11-03T09:41:13Z"
+    },
+    {
+      "event": "merge_group",
       "head_sha": "c3780668b85e0cd0705dcb4cc47534ad62b6939f",
       "merged_at": "2026-11-03T08:51:13Z",
       "pull_request": 45428,
@@ -19,33 +43,9 @@
       "pull_request": 45329,
       "run_id": 41600726588,
       "run_started_at": "2026-11-03T08:05:36Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "5c9efb8e5b72e507b5db8bca172d2c531f5bda4d",
-      "merged_at": "2026-11-03T08:10:05Z",
-      "pull_request": 45327,
-      "run_id": 41600617397,
-      "run_started_at": "2026-11-03T08:04:44Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "b1b3d36f5560e9bed7e816050c8d45a817ff2e2c",
-      "merged_at": "2026-11-03T08:09:48Z",
-      "pull_request": 45328,
-      "run_id": 41600558041,
-      "run_started_at": "2026-11-03T08:04:14Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "671840f805d9abd02578a04cbcd624ff7127396d",
-      "merged_at": "2026-11-03T07:56:58Z",
-      "pull_request": 44817,
-      "run_id": 41599053705,
-      "run_started_at": "2026-11-03T07:51:05Z"
     }
   ],
   "schema": 1,
   "source_repository": "langgenius/dify",
-  "updated_at": "2026-11-03T09:14:55.525219+00:00"
+  "updated_at": "2026-11-03T10:13:25.178940+00:00"
 }
