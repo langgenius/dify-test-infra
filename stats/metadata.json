@@ -6,6 +6,22 @@
   "samples": [
     {
       "event": "merge_group",
+      "head_sha": "71963794a84e2eab449e33687c8379421ca7bc2a",
+      "merged_at": "2026-11-16T01:10:12Z",
+      "pull_request": 46410,
+      "run_id": 43784039285,
+      "run_started_at": "2026-11-16T01:04:07Z"
+    },
+    {
+      "event": "merge_group",
+      "head_sha": "afc63faa9d874699c2eb3fff4e5b03bbb056f295",
+      "merged_at": "2026-11-16T00:43:43Z",
+      "pull_request": 46441,
+      "run_id": 43781523613,
+      "run_started_at": "2026-11-16T00:38:03Z"
+    },
+    {
+      "event": "merge_group",
       "head_sha": "5ebb1923dabc630ab76b743561a84a1807b600e9",
       "merged_at": "2026-11-15T16:16:26Z",
       "pull_request": 46389,
@@ -27,25 +43,9 @@
       "pull_request": 46390,
       "run_id": 43707353382,
       "run_started_at": "2026-11-15T11:07:09Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "5d606e95dbfadf665dbc694e7cd9c254a5997632",
-      "merged_at": "2026-11-15T11:10:55Z",
-      "pull_request": 46417,
-      "run_id": 43707195620,
-      "run_started_at": "2026-11-15T11:05:13Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "5a03d2ffda676875cc0d64abd8e30a61180133d3",
-      "merged_at": "2026-11-15T10:41:28Z",
-      "pull_request": 46359,
-      "run_id": 43704875272,
-      "run_started_at": "2026-11-15T10:36:09Z"
     }
   ],
   "schema": 1,
   "source_repository": "langgenius/dify",
-  "updated_at": "2026-11-15T17:10:06.261319+00:00"
+  "updated_at": "2026-11-16T01:16:41.301740+00:00"
 }
