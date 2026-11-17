@@ -6,6 +6,14 @@
   "samples": [
     {
       "event": "merge_group",
+      "head_sha": "b852250c307e6c833fdbc9df812f76d2019950cf",
+      "merged_at": "2026-11-17T16:16:04Z",
+      "pull_request": 46624,
+      "run_id": 44121613371,
+      "run_started_at": "2026-11-17T16:04:45Z"
+    },
+    {
+      "event": "merge_group",
       "head_sha": "7bdd8fed6fda3619a03ae9d34dbfe4fb94099cda",
       "merged_at": "2026-11-17T14:17:16Z",
       "pull_request": 46618,
@@ -35,17 +43,9 @@
       "pull_request": 46606,
       "run_id": 44097787828,
       "run_started_at": "2026-11-17T13:56:35Z"
-    },
-    {
-      "event": "merge_group",
-      "head_sha": "7b19f9d65b95c4b3c21ae188b463df0bedc64d71",
-      "merged_at": "2026-11-17T14:02:41Z",
-      "pull_request": 46548,
-      "run_id": 44097096729,
-      "run_started_at": "2026-11-17T13:52:29Z"
     }
   ],
   "schema": 1,
   "source_repository": "langgenius/dify",
-  "updated_at": "2026-11-17T15:13:43.545897+00:00"
+  "updated_at": "2026-11-17T17:12:54.450186+00:00"
 }
